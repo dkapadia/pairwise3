@@ -21,6 +21,8 @@ class QuestionsController < InheritedResources::Base
     authenticate
     logger.info "all params are #{params.inspect}"
     logger.info "vi is #{params['question']['visitor_identifier']} and local are #{params['question']['local_identifier']}."
+    logger.info "all cookies are #{cookies.inspect}"
+    logger.info "current_user is: #{current_user}"
     if @question = current_user.create_question(params['question']['visitor_identifier'], :name => params['question']['name'], :local_identifier => params['question']['local_identifier'], :ideas => (params['question']['ideas'].lines.to_a.delete_if {|i| i.blank?}))
       respond_to do |format|
         format.xml { render :xml => @question.to_xml}
