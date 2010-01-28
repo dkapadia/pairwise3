@@ -17,6 +17,17 @@ config.action_controller.perform_caching             = true
 # Disable delivery errors, bad email addresses will be ignored
 config.action_mailer.raise_delivery_errors = false
 
+ey_smtp_settings = {
+  :domain             => "allrideas.net", # CHANGEME
+  :address            => "smtp",
+  :port               => 25,
+  :perform_deliveries => true
+}
+
+config.action_mailer.smtp_settings   = ey_smtp_settings
+config.action_mailer.delivery_method = :smtp
+
+
 config.gem "rubaidh-google_analytics",
   :lib     => "rubaidh/google_analytics",
   :version => "1.1.4",
