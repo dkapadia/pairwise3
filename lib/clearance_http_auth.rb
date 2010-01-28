@@ -12,12 +12,14 @@ module Clearance
     module InstanceMethods
       
       def deny_access(flash_message = nil, opts = {})
+	logger.info("in deny access")
         store_location
         flash[:failure] = flash_message if flash_message
         respond_to do |format|
           format.html { redirect_to new_session_url }
           format.any(:json, :xml) do
             authenticate_or_request_with_http_basic('Pairwise API') do |login, password|
+	      logger.info("login is: "+ login + " Password is : " + password)		    
               @_current_user = ::User.authenticate(login, password)
             end
           end
