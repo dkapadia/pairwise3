@@ -16,6 +16,7 @@ class Clearance::SessionsController < ApplicationController
       render :template => 'sessions/new', :status => :unauthorized
     else
       if @user.email_confirmed?
+	logger.info("in sessions#create")
         sign_in(@user)
         flash_success_after_create
         redirect_back_or(url_after_create)

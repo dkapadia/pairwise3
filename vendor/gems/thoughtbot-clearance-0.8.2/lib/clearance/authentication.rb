@@ -44,6 +44,7 @@ module Clearance
       # @example
       #   before_filter :authenticate
       def authenticate
+	logger.info "in authenticate"
         deny_access unless signed_in?
       end
 
@@ -54,6 +55,7 @@ module Clearance
       # @example
       #   sign_in(@user)
       def sign_in(user)
+	logger.info "I don't think i'll get here, if this even prints"
         if user
           user.remember_me!
           cookies[:remember_token] = {
