@@ -89,7 +89,9 @@ module Clearance
       protected
 
       def user_from_cookie
+	logging.info "in user from cookie"
         if token = cookies[:remember_token]
+	  logging.info "TOKEN IS: " + token
           ::User.find_by_remember_token(token)
         end
       end
